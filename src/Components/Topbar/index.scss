@@ -1,0 +1,30 @@
+.top-bar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: whitesmoke;
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 15px;
+  }
+  .docs-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .top-image {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 60px;
+    border-radius: 50%;
+  }
+
+  .top-title {
+    font-size: 24px;
+  }
+}
