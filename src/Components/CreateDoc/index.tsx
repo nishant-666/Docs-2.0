@@ -1,7 +1,10 @@
 import "./index.scss";
+import { useState } from "react";
 import addDoc from "../../assets/addDoc.png";
 import EditDoc from "../EditDoc";
 import { createDoc } from "../../API/Firestore";
+import CommonModal from "../Modal";
+import { Input } from "antd";
 
 type isEditType = {
   isEdit: boolean;
@@ -10,9 +13,11 @@ type isEditType = {
 };
 
 export default function CreateDoc({ isEdit, handleEdit, id }: isEditType) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [title, setTitle] = useState("");
   const createDocument = () => {
     let payload = {
-      title: "Untitled",
+      title: title,
       value: "",
     };
     createDoc(payload);
@@ -27,12 +32,25 @@ export default function CreateDoc({ isEdit, handleEdit, id }: isEditType) {
           className="start-doc"
           src={addDoc}
           onClick={() => {
-            handleEdit();
-            createDocument();
+            // handleEdit();
+            setTitle("");
+            setIsModalOpen(true);
           }}
         />
         <p className="title">Blank</p>
       </div>
+
+      <CommonModal
+        createDocument={createDocument}
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      >
+        <Input
+          value={title}
+          onChange={(event) => setTitle(event?.target.value)}
+          placeholder="Enter the Title"
+        />
+      </CommonModal>
     </div>
   );
 }

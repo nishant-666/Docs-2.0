@@ -9,7 +9,6 @@ const Docs: React.FC = () => {
     loginWithGoogle();
   };
   let { isAuthenticated, userData } = useCheckAuth();
-  console.log(userData);
   return (
     <div className="docs-container">
       {!isAuthenticated ? (

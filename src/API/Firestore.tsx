@@ -5,8 +5,9 @@ import {
   collection,
   doc,
   updateDoc,
-  getDocs,
-  getDoc,
+  onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
 
 let docs = collection(firestore, "docs");
@@ -17,21 +18,22 @@ type payloadType = {
 };
 
 export const createDoc = (payload: payloadType) => {
-  addDoc(docs, { ...payload, userName: auth.currentUser?.displayName });
+  addDoc(docs, {
+    ...payload,
+    userId: auth.currentUser?.uid,
+    userName: auth.currentUser?.displayName,
+  });
 };
 
 export const getDocuments = (setDocs: any) => {
-  getDocs(docs)
-    .then((response) => {
-      setDocs(
-        response.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
-        })
-      );
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  let docQuery = query(docs, where("userId", "==", auth.currentUser?.uid));
+  onSnapshot(docQuery, (response) => {
+    setDocs(
+      response.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id };
+      })
+    );
+  });
 };
 
 export const editDoc = (payload: any, id: string) => {
@@ -39,14 +41,9 @@ export const editDoc = (payload: any, id: string) => {
   updateDoc(docToEdit, payload, id);
 };
 
-export const getCurrentDoc = (id: string, setCurrentDocument: any) => {
+export const getCurrentDoc = async (id: string, setCurrentDocument: any) => {
   let docToGet = doc(docs, id);
-
-  getDoc(docToGet)
-    .then((response) => {
-      setCurrentDocument(response.data());
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  await onSnapshot(docToGet, (response) => {
+    setCurrentDocument(response.data());
+  });
 };

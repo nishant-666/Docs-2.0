@@ -2,36 +2,36 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-}
 
-.react-icon {
-  position: absolute;
-  left: 20px;
-
-  cursor: pointer;
+  .saving-conf {
+    text-align: left;
+  }
 }
 
 .title-input {
   background-color: transparent;
-  position: absolute;
-  left: 50px;
-  margin-top: 60px;
+  margin-top: 20px;
   outline: none;
   border: none;
   color: #212121;
+  border: 1px solid #d5d5d5;
+  width: 90%;
 }
 
 .quill-container {
-  margin-top: 100px;
-  width: 95%;
+  margin-top: 30px;
+  text-align: center;
+  width: 90%;
 
   .ql-container.ql-snow {
     border: none;
     outline: none;
+    font-size: 20px;
   }
 
   .ql-toolbar.ql-snow {
     border: none;
     outline: none;
+    width: 100%;
   }
 }

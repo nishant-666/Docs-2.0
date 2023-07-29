@@ -1,5 +1,6 @@
 interface TopbarProps {
   photoURL: string;
+  setIsEdit: Function;
 }
 
 interface functionInterface {

@@ -1,14 +1,15 @@
 import "./index.scss";
 import { useState, useRef, useEffect } from "react";
-import { BiArrowBack } from "react-icons/bi";
 import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "../../Toolbar";
 import { editDoc, getCurrentDoc } from "../../API/Firestore";
+import { Input } from "antd";
 
-export default function EditDoc({ handleEdit, id }: functionInterface) {
+export default function EditDoc({ id }: functionInterface) {
   let quillRef = useRef<any>(null);
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
+  const [isSaving, setIsSaving] = useState("");
   const [currentDocument, setCurrentDocument] = useState({
     title: "",
     value: "",
@@ -19,18 +20,24 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
       title,
     };
     editDoc(payload, id);
+    setIsSaving("Saving..");
   }
 
   const getCurrentDocument = () => {
-    getCurrentDoc(id, setCurrentDocument);
+    if (id) {
+      getCurrentDoc(id, setCurrentDocument);
+    }
   };
 
   useEffect(() => {
+    setIsSaving("");
     const debounced = setTimeout(() => {
       editDocument();
-    }, 2000);
+    }, 500);
 
-    return () => clearTimeout(debounced);
+    return () => {
+      clearTimeout(debounced);
+    };
   }, [value, title]);
 
   useEffect(() => {
@@ -39,24 +46,19 @@ export default function EditDoc({ handleEdit, id }: functionInterface) {
   }, []);
 
   useEffect(() => {
-    setTitle(currentDocument.title);
-    setValue(currentDocument.value);
+    setTitle(currentDocument?.title);
+    setValue(currentDocument?.value);
   }, [currentDocument]);
 
-  console.log(currentDocument);
   return (
     <div className="edit-container">
-      <BiArrowBack onClick={handleEdit} size={30} className="react-icon" />
-
-      <input
-        onChange={(event) => {
-          setTitle(event?.target.value);
-        }}
+      {/* <p className="saving-conf">{isSaving}</p> */}
+      <Input
         value={title}
         className="title-input"
-        placeholder="Untitled"
+        onChange={(event) => setTitle(event?.target.value)}
+        placeholder="Enter the Title"
       />
-
       <div className="quill-container">
         <EditorToolbar />
         <ReactQuill

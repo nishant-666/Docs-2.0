@@ -18,7 +18,7 @@ export default function Document({ photoURL }: TopbarProps) {
   };
   return (
     <div>
-      <Topbar photoURL={photoURL} />
+      <Topbar photoURL={photoURL} setIsEdit={setIsEdit} />
       <CreateDoc id={id} isEdit={isEdit} handleEdit={handleEdit} />
       {isEdit ? <></> : <DocsList openDoc={openDoc} />}
     </div>

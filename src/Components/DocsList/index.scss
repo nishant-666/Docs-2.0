@@ -1,30 +1,76 @@
 .docs-main {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   gap: 10px;
   justify-content: center;
   .doc-card {
     margin-top: 20px;
-    width: 70%;
     width: 200px;
     height: 250px;
     cursor: pointer;
     border: 1px solid #cacaca;
     position: relative;
+    background-color: rgb(249, 248, 248);
+  }
+
+  .doc-card:hover {
+    border: 1px solid #42a5f5;
   }
 
   .doc-content {
-    font-size: 15px;
+    font-size: 12px;
     text-align: center;
     padding: 0 20px;
+  }
+  .doc-icon {
+    width: 25px;
   }
 
   .doc-title {
     position: absolute;
     bottom: 0px;
-    left: 50%;
+    height: 60px;
     width: 100%;
-    text-align: center;
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
     font-size: 15px;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #cacaca;
+    font-weight: 500;
+  }
+}
+
+.react-icons {
+  color: #212121;
+}
+
+@media (max-width: 767px) {
+  .docs-main {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    .doc-card {
+      width: 150px;
+      height: 200px;
+      margin-top: 20px;
+      cursor: pointer;
+      border: 1px solid #cacaca;
+      position: relative;
+      background-color: rgb(249, 248, 248);
+    }
+
+    .doc-content {
+      font-size: 9px;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .doc-title {
+      font-size: 10px;
+    }
   }
 }
