@@ -1,5 +1,5 @@
 import React from "react";
-import ModalComponent from "../Components/Modal";
+import ButtonComponent from "../Components/Button";
 import { loginWithGoogle } from "../API/Auth";
 import useCheckAuth from "../Hooks/useCheckAuth";
 import Topbar from "../Components/Topbar";
@@ -13,10 +13,10 @@ const Docs: React.FC = () => {
   return (
     <div className="docs-container">
       {!isAuthenticated ? (
-        <ModalComponent
+        <ButtonComponent
           title="Login With Google"
           handleLogin={handleLogin}
-        ></ModalComponent>
+        ></ButtonComponent>
       ) : (
         <>
           <Topbar photoURL={userData?.photoURL} />
