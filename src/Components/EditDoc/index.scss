@@ -1,0 +1,37 @@
+.edit-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.react-icon {
+  position: absolute;
+  left: 20px;
+
+  cursor: pointer;
+}
+
+.title-input {
+  background-color: transparent;
+  position: absolute;
+  left: 50px;
+  margin-top: 60px;
+  outline: none;
+  border: none;
+  color: #212121;
+}
+
+.quill-container {
+  margin-top: 100px;
+  width: 95%;
+
+  .ql-container.ql-snow {
+    border: none;
+    outline: none;
+  }
+
+  .ql-toolbar.ql-snow {
+    border: none;
+    outline: none;
+  }
+}

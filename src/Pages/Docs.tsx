@@ -2,7 +2,7 @@ import React from "react";
 import ButtonComponent from "../Components/Button";
 import { loginWithGoogle } from "../API/Auth";
 import useCheckAuth from "../Hooks/useCheckAuth";
-import Topbar from "../Components/Topbar";
+import Document from "../Components/Document";
 
 const Docs: React.FC = () => {
   const handleLogin = () => {
@@ -19,7 +19,7 @@ const Docs: React.FC = () => {
         ></ButtonComponent>
       ) : (
         <>
-          <Topbar photoURL={userData?.photoURL} />
+          <Document photoURL={userData?.photoURL} />
         </>
       )}
     </div>
