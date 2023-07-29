@@ -1,5 +1,6 @@
 import "./index.scss";
 import docsIcon from "../../assets/docsIcon.png";
+import CommonDropdown from "../Dropdown";
 
 export default function Topbar({ photoURL, setIsEdit }: TopbarProps) {
   return (
@@ -12,7 +13,12 @@ export default function Topbar({ photoURL, setIsEdit }: TopbarProps) {
         />
         <p className="top-title">Docs</p>
       </div>
-      <img className="top-image" src={photoURL} />
+
+      <div className="dropdown-right">
+        <CommonDropdown>
+          <img className="top-image" src={photoURL} />
+        </CommonDropdown>
+      </div>
     </div>
   );
 }

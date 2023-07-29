@@ -1,6 +1,10 @@
 interface TopbarProps {
   photoURL: string;
-  setIsEdit: Function;
+  setIsEdit?: Function;
+}
+
+interface DropdownProps {
+  children: React.ReactNode;
 }
 
 interface functionInterface {

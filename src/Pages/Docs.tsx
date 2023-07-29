@@ -10,18 +10,20 @@ const Docs: React.FC = () => {
   };
   let { isAuthenticated, userData } = useCheckAuth();
   return (
-    <div className="docs-container">
+    <>
       {!isAuthenticated ? (
-        <ButtonComponent
-          title="Login With Google"
-          handleLogin={handleLogin}
-        ></ButtonComponent>
+        <div className="docs-container">
+          <ButtonComponent
+            title="Login With Google"
+            handleLogin={handleLogin}
+          ></ButtonComponent>
+        </div>
       ) : (
         <>
           <Document photoURL={userData?.photoURL} />
         </>
       )}
-    </div>
+    </>
   );
 };
 
