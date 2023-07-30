@@ -4,6 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export default function useCheckAuth() {
   const [isAuthenticated, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({
     photoURL: "",
   });
@@ -12,10 +13,12 @@ export default function useCheckAuth() {
       if (response) {
         setUserData(response);
         setIsAuth(true);
+        setLoading(false);
       } else {
         setIsAuth(false);
+        setLoading(false);
       }
     });
   }, []);
-  return { isAuthenticated, userData };
+  return { isAuthenticated, userData, loading };
 }

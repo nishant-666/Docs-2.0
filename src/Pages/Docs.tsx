@@ -3,12 +3,15 @@ import ButtonComponent from "../Components/Button";
 import { loginWithGoogle } from "../API/Auth";
 import useCheckAuth from "../Hooks/useCheckAuth";
 import Document from "../Components/Document";
+import Spinner from "../Components/Spinner";
 
 const Docs: React.FC = () => {
   const handleLogin = () => {
     loginWithGoogle();
   };
-  let { isAuthenticated, userData } = useCheckAuth();
+  let { isAuthenticated, userData, loading } = useCheckAuth();
+  if (loading) return <Spinner />;
+
   return (
     <>
       {!isAuthenticated ? (

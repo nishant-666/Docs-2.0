@@ -41,9 +41,14 @@ export const editDoc = (payload: any, id: string) => {
   updateDoc(docToEdit, payload, id);
 };
 
-export const getCurrentDoc = async (id: string, setCurrentDocument: any) => {
+export const getCurrentDoc = async (
+  id: string,
+  setValue: any,
+  setTitle: any
+) => {
   let docToGet = doc(docs, id);
   await onSnapshot(docToGet, (response) => {
-    setCurrentDocument(response.data());
+    setValue(response.data()?.value);
+    setTitle(response.data()?.title);
   });
 };

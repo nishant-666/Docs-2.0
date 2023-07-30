@@ -10,22 +10,18 @@ export default function EditDoc({ id }: functionInterface) {
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [isSaving, setIsSaving] = useState("");
-  const [currentDocument, setCurrentDocument] = useState({
-    title: "",
-    value: "",
-  });
+
   function editDocument() {
     let payload = {
       value,
       title,
     };
     editDoc(payload, id);
-    setIsSaving("Saving..");
   }
 
   const getCurrentDocument = () => {
     if (id) {
-      getCurrentDoc(id, setCurrentDocument);
+      getCurrentDoc(id, setValue, setTitle);
     }
   };
 
@@ -45,11 +41,7 @@ export default function EditDoc({ id }: functionInterface) {
     quillRef.current.focus();
   }, []);
 
-  useEffect(() => {
-    setTitle(currentDocument?.title);
-    setValue(currentDocument?.value);
-  }, [currentDocument]);
-
+  console.log(isSaving);
   return (
     <div className="edit-container">
       {/* <p className="saving-conf">{isSaving}</p> */}
